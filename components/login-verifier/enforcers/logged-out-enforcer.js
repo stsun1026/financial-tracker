@@ -28,7 +28,7 @@ const LoggedOutEnforcer = ({children, ...props}) => {
 
   if(isFetchingLoginStatus) {
     firebase.auth().onAuthStateChanged((user) => {
-      props.fetchingLoginStatusComplete(!!user);
+      props.fetchingLoginStatusComplete(user);
     });
   }
 

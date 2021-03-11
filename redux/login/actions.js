@@ -10,15 +10,18 @@ export const fetchingLoginStatus = () => (dispatch) => {
   return dispatch({ type: loginActionTypes.FETCHING_LOGIN_STATUS });
 }
 
-export const fetchingLoginStatusComplete = (isLoggedIn) => (dispatch) => {
+export const fetchingLoginStatusComplete = (userData) => (dispatch) => {
   return dispatch({
     type: loginActionTypes.FETCHING_LOGIN_STATUS_COMPLETE,
-    isLoggedIn: isLoggedIn,
+    userData: userData,
   });
 }
 
-export const loginSuccess = () => (dispatch) => {
-  return dispatch({ type: loginActionTypes.LOGIN_SUCCESS });
+export const loginSuccess = (userDataFromLogin) => (dispatch) => {
+  return dispatch({
+    type: loginActionTypes.LOGIN_SUCCESS,
+    userDataFromLogin: userDataFromLogin,  
+  });
 }
 
 export const loginFailed = () => (dispatch) => {

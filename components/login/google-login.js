@@ -11,11 +11,11 @@ const GoogleLogin = ({children, ...props}) => {
   const login = () => {
     const provider = createProvider();
     firebase.auth().signInWithPopup(provider)
-    .then(() => {
-      props.loginSuccess();
-    }).catch(() => {
-      props.loginFailed()
-    });
+      .then((user) => {
+        props.loginSuccess(user);
+      }).catch((error) => {
+        props.loginFailed()
+      });
   }
 
   return (<button onClick={login}>{children}</button>);
