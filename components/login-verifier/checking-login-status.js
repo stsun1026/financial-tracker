@@ -1,3 +1,3 @@
-const CheckingLoginStatus = () => <h3>Checking login status...</h3>
+const CheckingLoginStatus = () => <></>
 
 export default CheckingLoginStatus;
