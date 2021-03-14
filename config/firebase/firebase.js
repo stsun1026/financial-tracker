@@ -7,7 +7,8 @@ const firebaseConfig = {
   storageBucket: "finance-tracker-56aca.appspot.com",
   messagingSenderId: "1048804801627",
   appId: "1:1048804801627:web:65889ed7c27276786e137e",
-  measurementId: "G-M7CS9ED1R5"
+  measurementId: "G-M7CS9ED1R5",
+  databaseUrl: "https://finance-tracker-56aca-default-rtdb.firebaseio.com/",
 };
 try {
   firebase.initializeApp(firebaseConfig);
