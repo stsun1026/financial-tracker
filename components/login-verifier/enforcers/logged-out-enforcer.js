@@ -1,8 +1,7 @@
 import { useEffect, useLayoutEffect } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect, useSelector } from 'react-redux';
-import Router from 'next/router';
-import { DASHBOARD_HOME } from '../../../constants/routes';
+import RedirectService from '../../../services/routing/redirect-service';
 import CheckingLoginStatus from '../checking-login-status';
 import {
   fetchingLoginStatus,
@@ -22,9 +21,9 @@ const LoggedOutEnforcer = ({children, ...props}) => {
 
   useEffect(() => {
     if(isFetchingLoginStatus === false && isLoggedIn === true) {
-      Router.push(DASHBOARD_HOME);
+      RedirectService.goToAuthorizedLandingPage();
     }
-  }, [isLoggedIn]);
+  }, [isFetchingLoginStatus]);
 
   if(isFetchingLoginStatus) {
     firebase.auth().onAuthStateChanged((user) => {
@@ -35,8 +34,9 @@ const LoggedOutEnforcer = ({children, ...props}) => {
   if(isFetchingLoginStatus || isLoggedIn || isLoggedIn === null) {
     return <CheckingLoginStatus/>;
   }
-  return <div>{children}</div>
+  return (<div>{children}</div>);
 }
+
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchingLoginStatus: bindActionCreators(fetchingLoginStatus, dispatch),

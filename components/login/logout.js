@@ -1,3 +1,4 @@
+import RedirectService from '../../services/routing/redirect-service';
 import { connect } from 'react-redux'
 import firebase from '../../config/firebase/firebase';
 import { bindActionCreators } from 'redux'
@@ -6,7 +7,8 @@ import { logout } from '../../redux/login/actions';
 const Logout = ({children, ...props}) => {
   const logout = () => {
     firebase.auth().signOut().then(() => {
-      props.logout(); 
+      props.logout();
+      RedirectService.goToUnauthorizedLandingPage();
     }).catch((error) => {
       console.log('logout error', error);
     });

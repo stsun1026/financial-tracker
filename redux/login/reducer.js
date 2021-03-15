@@ -9,42 +9,48 @@ const loginInitialState = {
   isFetchingLoginStatus: false,
   isLoggedIn: null,
   userData: null,
+  dbRef: null,
 };
 
 export default function reducer(state = loginInitialState, action) {
   switch(action.type) {
-    case loginActionTypes.FETCHING_LOGIN_STATUS:
+    case loginActionTypes.FETCHING_LOGIN_STATUS: {
       return {
         ...state,
         isFetchingLoginStatus: true,
-        isLoggedIn: null,
-        userData: null,
       };
+    }
     
-    case loginActionTypes.FETCHING_LOGIN_STATUS_COMPLETE:
+    case loginActionTypes.FETCHING_LOGIN_STATUS_COMPLETE: {
+      const isLoggedIn = state.isLoggedIn ?? isUserLoggedIn(action.userData);
+      const parsedUserData = state.userData ?? parseGoogleUserData(action.userData);
+      
       return {
         ...state,
         isFetchingLoginStatus: false,
-        isLoggedIn: isUserLoggedIn(action.userData),
-        userData: parseGoogleUserData(action.userData),
+        isLoggedIn: isLoggedIn,
+        userData: parsedUserData,
       };
+    }
 
-    case loginActionTypes.LOGIN_SUCCESS:
+    case loginActionTypes.LOGIN_SUCCESS: {
       return {
         ...state,
         isFetchingLoginStatus: false,
         isLoggedIn: true,
         userData: parseGoogleUserDataFromLogin(action.userDataFromLogin),
       };
+    }
 
     case loginActionTypes.LOGIN_FAILED:
-    case loginActionTypes.LOGOUT:
+    case loginActionTypes.LOGOUT: {
       return {
         ...state,
         isFetchingLoginStatus: false,
         isLoggedIn: false,
         userData: null,
       };
+    }
 
     default:
       return state;

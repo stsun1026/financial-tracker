@@ -1,3 +1,4 @@
+import RedirectService from '../../services/routing/redirect-service';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import firebase from '../../config/firebase/firebase';
@@ -13,6 +14,7 @@ const GoogleLogin = ({children, ...props}) => {
     firebase.auth().signInWithPopup(provider)
       .then((user) => {
         props.loginSuccess(user);
+        RedirectService.goToAuthorizedLandingPage();
       }).catch((error) => {
         props.loginFailed()
       });
