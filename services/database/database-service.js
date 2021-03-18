@@ -25,12 +25,12 @@ const DatabaseService = function() {
   }
 
   this.setValue = (model) => {
-    store.dispatch(settingUserData()); 
+    store.dispatch(settingUserData());
     this.ref.set(
       model,
       (error) => {
         if(error) {
-          store.dispatch(settingUserDataFailed());
+          store.dispatch(settingUserDataFailed(error));
         } else {
           store.dispatch(settingUserDataSuccess());
         }
@@ -43,7 +43,7 @@ const DatabaseService = function() {
       const data = snapshot.val();
       store.dispatch(fetchingUserDataSuccess(data)); 
     }, (error) => {
-      store.dispatch(fetchingUserDataFailed());
+      store.dispatch(fetchingUserDataFailed(error));
     });
   }
 }
