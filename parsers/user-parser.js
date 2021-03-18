@@ -1,4 +1,4 @@
-import User from '../models/user';
+import ReduxUser from '../redux/redux-models/redux-user';
 
 // keys for user payload from firebase
 const PROVIDER_DATA_KEY = 'providerData';
@@ -19,7 +19,7 @@ export const parseGoogleUserData = (userData) => {
     const providerData = userData[PROVIDER_DATA_KEY][PROVIDER_DATA_INDEX];
     const name = providerData[DISPLAY_NAME_KEY];
     const userId = providerData[USER_ID_KEY];
-    return User({ name: name, userId: userId });
+    return ReduxUser({ name: name, userId: userId });
   } catch(error) {
     return userInErrorState(error);
   }
@@ -34,4 +34,4 @@ export const parseGoogleUserDataFromLogin = (userDataFromLogin) => {
   }
 }
 
-const userInErrorState = (error) => User({ name: null, userId: null, error: error.message });
+const userInErrorState = (error) => ReduxUser({ name: null, userId: null, error: error.message });

@@ -1,12 +1,14 @@
-export const User = ({
-  name,
-  id,
-  error = null,
-}) => {
+const User = ({
+  isOnboarded = null,
+  profile = null,
+  income = null,
+  tax = null,
+} = {}) => {
   return {
-    name: name,
-    id: id,
-    error: error,
+    isOnboarded: isOnboarded,
+    profile: profile,
+    income: income,
+    tax: tax,
   };
 }
 

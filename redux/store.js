@@ -2,6 +2,8 @@ import { createStore, applyMiddleware, combineReducers } from 'redux';
 import { HYDRATE, createWrapper } from 'next-redux-wrapper';
 import thunkMiddleware from 'redux-thunk';
 import login from './login/reducer';
+import fetchUserData from './fetch-user-data/reducer';
+import setUserData from './set-user-data/reducer';
 
 const bindMiddleware = (middleware) => {
   if (process.env.NODE_ENV !== 'production') {
@@ -12,7 +14,9 @@ const bindMiddleware = (middleware) => {
 }
 
 const combinedReducer = combineReducers({
-  login
+  login,
+  fetchUserData,
+  setUserData,
 })
 
 const reducer = (state, action) => {
@@ -31,4 +35,4 @@ const initStore = () => {
   return createStore(reducer, bindMiddleware([thunkMiddleware]));
 }
 
-export const wrapper = createWrapper(initStore);
+export const store = initStore();
