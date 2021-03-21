@@ -14,8 +14,10 @@ import {
   fetchingUserDataFailed,
 } from '../../redux/fetch-user-data/actions';
 
-const DatabaseService = function() {
+const initDatabaseService = function() {
   this._ref = null;
+
+  const resetRef = () => this._ref = null;
 
   this.withRef = (ref) => {
     this._ref = ref;
@@ -33,6 +35,7 @@ const DatabaseService = function() {
           store.dispatch(settingUserDataSuccess());
         }
       });
+      resetRef();
   }
 
   this.getValue = () => {
@@ -43,9 +46,12 @@ const DatabaseService = function() {
     }, (error) => {
       store.dispatch(fetchingUserDataFailed(error));
     });
+    resetRef();
   }
 
   this.auth = () => new AuthService();
 }
+
+const DatabaseService = new initDatabaseService();
 
 export default DatabaseService;

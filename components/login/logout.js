@@ -3,7 +3,7 @@ import DatabaseService from '../../services/database/database-service';
 
 const Logout = ({children, ...props}) => {
   const logout = () => {
-    new DatabaseService().auth()
+    DatabaseService.auth()
       .withSuccessAction(
         new RedirectService().goToUnauthorizedLandingPage)
       .logout();

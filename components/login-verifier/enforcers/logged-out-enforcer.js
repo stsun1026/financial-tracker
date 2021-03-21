@@ -10,7 +10,7 @@ const LoggedOutEnforcer = ({children, ...props}) => {
 
   useLayoutEffect(() => {
     if(isLoggedIn === null) {
-      new DatabaseService().auth().getUserData();
+      DatabaseService.auth().getUserData();
     }
   }, []);
 

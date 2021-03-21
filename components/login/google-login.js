@@ -14,8 +14,7 @@ const GoogleLogin = ({children, ...props}) => {
   }, [isLoggedIn]);
 
   const login = () => {
-    new DatabaseService()
-      .auth()
+    DatabaseService.auth()
         .withSuccessAction(
           redirectService.goToAuthorizedLandingPage)
         .loginWithGooglePopup();
