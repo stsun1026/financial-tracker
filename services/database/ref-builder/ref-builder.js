@@ -4,7 +4,7 @@ import {
   USERS,
 } from '../constants';
 import UserRefBuilder from './user-ref-builder';
-import DatabaseReferenceError from './database-reference-error';
+import DatabaseReferenceError from '../../errors/database-reference-error';
 
 const RefBuilder = function() {
   this.pathItems = []

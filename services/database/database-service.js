@@ -1,3 +1,4 @@
+import firebase from '../../config/firebase/firebase';
 import { store } from '../../redux/store';
 import AuthService from './auth-service';
 import {
@@ -16,6 +17,7 @@ import {
 
 const initDatabaseService = function() {
   this._ref = null;
+  this._authService = new AuthService(firebase);
 
   const resetRef = () => this._ref = null;
 
@@ -49,7 +51,7 @@ const initDatabaseService = function() {
     resetRef();
   }
 
-  this.auth = () => new AuthService();
+  this.auth = () => this._authService;
 }
 
 const DatabaseService = new initDatabaseService();

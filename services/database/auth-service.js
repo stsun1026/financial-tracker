@@ -1,4 +1,3 @@
-import firebase from '../../config/firebase/firebase';
 import { store } from '../../redux/store';
 import {
   fetchingLoginStatus,
@@ -7,8 +6,13 @@ import {
   loginFailed,
   logout,
 } from '../../redux/login/actions';
-import RedirectService from '../routing/redirect-service';
-const AuthService = function() {
+import ServiceAccessError from '../errors/service-access-error';
+
+const AuthService = function(firebase) {
+  if(!firebase) {
+    throw new ServiceAccessError('Please access AuthService through DatabaseService');
+  }
+
   this._successAction = null;
   this._failureAction = null;
   
