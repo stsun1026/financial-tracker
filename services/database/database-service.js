@@ -1,7 +1,5 @@
-import firebase from '../../config/firebase/firebase';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
 import { store } from '../../redux/store';
+import AuthService from './auth-service';
 import {
   VALUE,
 } from './constants';
@@ -46,6 +44,8 @@ const DatabaseService = function() {
       store.dispatch(fetchingUserDataFailed(error));
     });
   }
+
+  this.auth = () => new AuthService();
 }
 
 export default DatabaseService;

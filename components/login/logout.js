@@ -1,26 +1,15 @@
 import RedirectService from '../../services/routing/redirect-service';
-import { connect } from 'react-redux'
-import firebase from '../../config/firebase/firebase';
-import { bindActionCreators } from 'redux'
-import { logout } from '../../redux/login/actions';
+import DatabaseService from '../../services/database/database-service';
 
 const Logout = ({children, ...props}) => {
   const logout = () => {
-    firebase.auth().signOut().then(() => {
-      props.logout();
-      RedirectService.goToUnauthorizedLandingPage();
-    }).catch((error) => {
-      console.log('logout error', error);
-    });
+    new DatabaseService().auth()
+      .withSuccessAction(
+        new RedirectService().goToUnauthorizedLandingPage)
+      .logout();
   }
 
   return (<button onClick={logout}>{children}</button>);
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    logout: bindActionCreators(logout, dispatch),
-  };
-}
-
-export default connect(null, mapDispatchToProps)(Logout);
+export default Logout;

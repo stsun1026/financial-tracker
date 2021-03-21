@@ -1,35 +1,24 @@
 import { useEffect, useLayoutEffect } from 'react'
-import { bindActionCreators } from 'redux'
-import { connect, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import RedirectService from '../../../services/routing/redirect-service';
 import CheckingLoginStatus from '../checking-login-status';
-import {
-  fetchingLoginStatus,
-  fetchingLoginStatusComplete,
-} from '../../../redux/login/actions';
-import firebase from '../../../config/firebase/firebase';
+import DatabaseService from '../../../services/database/database-service';
 
 const LoggedOutEnforcer = ({children, ...props}) => {
   const isLoggedIn = useSelector(state => state.login.isLoggedIn);
   const isFetchingLoginStatus = useSelector(state => state.login.isFetchingLoginStatus);
-  
+
   useLayoutEffect(() => {
     if(isLoggedIn === null) {
-      props.fetchingLoginStatus();
+      new DatabaseService().auth().getUserData();
     }
   }, []);
 
   useEffect(() => {
     if(isFetchingLoginStatus === false && isLoggedIn === true) {
-      RedirectService.goToAuthorizedLandingPage();
+      new RedirectService().goToAuthorizedLandingPage();
     }
   }, [isFetchingLoginStatus]);
-
-  if(isFetchingLoginStatus) {
-    firebase.auth().onAuthStateChanged((user) => {
-      props.fetchingLoginStatusComplete(user);
-    });
-  }
 
   if(isFetchingLoginStatus || isLoggedIn || isLoggedIn === null) {
     return <CheckingLoginStatus/>;
@@ -37,11 +26,4 @@ const LoggedOutEnforcer = ({children, ...props}) => {
   return (<div>{children}</div>);
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    fetchingLoginStatus: bindActionCreators(fetchingLoginStatus, dispatch),
-    fetchingLoginStatusComplete: bindActionCreators(fetchingLoginStatusComplete, dispatch),
-  };
-}
-
-export default connect(null, mapDispatchToProps)(LoggedOutEnforcer);
+export default LoggedOutEnforcer;

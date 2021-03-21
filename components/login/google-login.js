@@ -1,33 +1,26 @@
+import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import RedirectService from '../../services/routing/redirect-service';
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
-import firebase from '../../config/firebase/firebase';
-import {
-  loginSuccess,
-  loginFailed
-} from '../../redux/login/actions';
+import DatabaseService from '../../services/database/database-service';
 
 const GoogleLogin = ({children, ...props}) => {
-  const createProvider = () => new firebase.auth.GoogleAuthProvider();
+  const isLoggedIn = useSelector(state => state.login.isLoggedIn);
+  
+  useEffect(() => {
+    if(isLoggedIn) {
+      new RedirectService().goToAuthorizedLandingPage();
+    }
+  }, [isLoggedIn]);
+
   const login = () => {
-    const provider = createProvider();
-    firebase.auth().signInWithPopup(provider)
-      .then((user) => {
-        props.loginSuccess(user);
-        RedirectService.goToAuthorizedLandingPage();
-      }).catch((error) => {
-        props.loginFailed()
-      });
+    new DatabaseService()
+      .auth()
+        .withSuccessAction(
+          new RedirectService().goToAuthorizedLandingPage)
+        .loginWithGooglePopup();
   }
 
   return (<button onClick={login}>{children}</button>);
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    loginSuccess: bindActionCreators(loginSuccess, dispatch),
-    loginFailed: bindActionCreators(loginFailed, dispatch),
-  };
-}
-
-export default connect(null, mapDispatchToProps)(GoogleLogin);
+export default GoogleLogin;
