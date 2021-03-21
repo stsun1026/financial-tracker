@@ -5,10 +5,11 @@ import DatabaseService from '../../services/database/database-service';
 
 const GoogleLogin = ({children, ...props}) => {
   const isLoggedIn = useSelector(state => state.login.isLoggedIn);
-  
+  const redirectService = new RedirectService();
+
   useEffect(() => {
     if(isLoggedIn) {
-      new RedirectService().goToAuthorizedLandingPage();
+      new redirectService.goToAuthorizedLandingPage();
     }
   }, [isLoggedIn]);
 
@@ -16,7 +17,7 @@ const GoogleLogin = ({children, ...props}) => {
     new DatabaseService()
       .auth()
         .withSuccessAction(
-          new RedirectService().goToAuthorizedLandingPage)
+          redirectService.goToAuthorizedLandingPage)
         .loginWithGooglePopup();
   }
 
