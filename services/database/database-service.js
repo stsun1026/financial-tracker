@@ -15,16 +15,16 @@ import {
 } from '../../redux/fetch-user-data/actions';
 
 const DatabaseService = function() {
-  this.ref = null;
+  this._ref = null;
 
   this.withRef = (ref) => {
-    this.ref = ref;
+    this._ref = ref;
     return this;  
   }
 
   this.setValue = (model) => {
     store.dispatch(settingUserData());
-    this.ref.set(
+    this._ref.set(
       model,
       (error) => {
         if(error) {
@@ -37,7 +37,7 @@ const DatabaseService = function() {
 
   this.getValue = () => {
     store.dispatch(fetchingUserData());
-    this.ref.on(VALUE, (snapshot) => {
+    this._ref.on(VALUE, (snapshot) => {
       const data = snapshot.val();
       store.dispatch(fetchingUserDataSuccess(data)); 
     }, (error) => {
