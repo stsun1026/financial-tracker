@@ -1,5 +1,5 @@
 import { createStore, applyMiddleware, combineReducers } from 'redux';
-import { HYDRATE, createWrapper } from 'next-redux-wrapper';
+import { HYDRATE } from 'next-redux-wrapper';
 import thunkMiddleware from 'redux-thunk';
 import login from './login/reducer';
 import fetchUserData from './fetch-user-data/reducer';
