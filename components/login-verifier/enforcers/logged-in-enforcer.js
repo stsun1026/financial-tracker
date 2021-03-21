@@ -16,7 +16,7 @@ const LoggedInEnforcer = ({children, ...props}) => {
 
   useEffect(() => {
     if(isFetchingLoginStatus === false && isLoggedIn === false) {
-      new RedirectService().goToUnauthorizedLandingPage();
+      RedirectService.goToUnauthorizedLandingPage();
     }
   }, [isFetchingLoginStatus]);
 

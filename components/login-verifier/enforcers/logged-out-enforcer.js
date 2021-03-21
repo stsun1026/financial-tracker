@@ -16,7 +16,7 @@ const LoggedOutEnforcer = ({children, ...props}) => {
 
   useEffect(() => {
     if(isFetchingLoginStatus === false && isLoggedIn === true) {
-      new RedirectService().goToAuthorizedLandingPage();
+      RedirectService.goToAuthorizedLandingPage();
     }
   }, [isFetchingLoginStatus]);
 

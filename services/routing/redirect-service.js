@@ -4,7 +4,7 @@ import {
   LOGIN_HOME,
 } from '../../services/routing/constants';
 
-const RedirectService = function() {
+const initRedirectService = function() {
   this.goToUnauthorizedLandingPage = () => {
     Router.push(LOGIN_HOME);
   }
@@ -13,5 +13,7 @@ const RedirectService = function() {
     Router.push(DASHBOARD_HOME);
   }
 }
+
+const RedirectService = new initRedirectService();
 
 export default RedirectService;
