@@ -4,6 +4,7 @@ import thunkMiddleware from 'redux-thunk';
 import login from './login/reducer';
 import fetchUserData from './fetch-user-data/reducer';
 import setUserData from './set-user-data/reducer';
+import fetchStockAutoComplete from './fetch-stock-auto-complete/reducer';
 
 const bindMiddleware = (middleware) => {
   if (process.env.NODE_ENV !== 'production') {
@@ -17,6 +18,7 @@ const combinedReducer = combineReducers({
   login,
   fetchUserData,
   setUserData,
+  fetchStockAutoComplete,
 })
 
 const reducer = (state, action) => {
