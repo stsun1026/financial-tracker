@@ -8,7 +8,7 @@ import {
 } from '../../redux/login/actions';
 import ServiceAccessError from '../errors/service-access-error';
 
-const AuthService = function(firebase) {
+export const AuthService = function(firebase) {
   if(!firebase) {
     throw new ServiceAccessError('Please access AuthService through DatabaseService');
   }
@@ -70,5 +70,3 @@ const AuthService = function(firebase) {
     });
   }
 }
-
-export default AuthService;

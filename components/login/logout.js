@@ -1,9 +1,9 @@
 import RedirectService from '../../services/routing/redirect-service';
-import DatabaseService from '../../services/database/database-service';
+import databaseService from '../../services/database/database-service';
 
 const Logout = ({children, ...props}) => {
   const logout = () => {
-    DatabaseService.auth()
+    databaseService.auth()
       .withSuccessAction(RedirectService.goToUnauthorizedLandingPage)
       .logout();
   }

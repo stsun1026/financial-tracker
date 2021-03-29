@@ -2,7 +2,7 @@ import { useEffect, useLayoutEffect } from 'react'
 import { useSelector } from 'react-redux';
 import RedirectService from '../../../services/routing/redirect-service';
 import CheckingLoginStatus from '../checking-login-status';
-import DatabaseService from '../../../services/database/database-service';
+import databaseService from '../../../services/database/database-service';
 
 const LoggedOutEnforcer = ({children, ...props}) => {
   const isLoggedIn = useSelector(state => state.login.isLoggedIn);
@@ -10,7 +10,7 @@ const LoggedOutEnforcer = ({children, ...props}) => {
 
   useLayoutEffect(() => {
     if(isLoggedIn === null) {
-      DatabaseService.auth().getUserData();
+      databaseService.auth().getUserData();
     }
   }, []);
 
