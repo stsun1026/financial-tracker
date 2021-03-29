@@ -6,20 +6,22 @@ import {
 import UserRefBuilder from './user-ref-builder';
 import DatabaseReferenceError from '../../errors/database-reference-error';
 
-const RefBuilder = function() {
+export const RefBuilder = function() {
   this.pathItems = []
+
   this.user = (uid) => {
     if(!uid) {
       throw new DatabaseReferenceError('Uid must be provided');
     }
-    this.pathItems.push(...[USERS, uid]);
-    return new UserRefBuilder(this.pathItems);
+    return new UserRefBuilder([USERS, uid]);
+  }
+
+  this.build = () => {
+    const combinedPath = this.pathItems.join(SEPARATOR) + SEPARATOR;
+    return firebase.database().ref(combinedPath);
   }
 }
 
-RefBuilder.prototype.build = function(pathItems) {
-  const combinedPath = pathItems.join(SEPARATOR) + SEPARATOR;
-  return firebase.database().ref(combinedPath);
-}
+const refBuilder = new RefBuilder();
 
-export default RefBuilder;
+export default refBuilder;
