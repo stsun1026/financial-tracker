@@ -2,12 +2,17 @@ import { US_REGION } from "../../../config/rapid-api/yahoo-finance/yahoo-finance
 import { ApiService } from "../api-service";
 import { FetchStockAutoComplete } from './fetch-stock-auto-complete/fetch-stock-auto-complete';
 
-const YahooFinanceApiService = function(axios) {
+export const YahooFinanceApiService = function(axios) {
   ApiService.call(this);
+
+  this._fetchStockAutoComplete = null;
 
   this.defaultRegion = () => US_REGION;
 
-  this.fetchStockAutoComplete = ({ query }) => new FetchStockAutoComplete(axios, query);
+  this.fetchStockAutoComplete = ({ query }) => {
+    if(!this._fetchStockAutoComplete) {
+      this._fetchStockAutoComplete = new FetchStockAutoComplete(axios, query);
+    }
+    return this._fetchStockAutoComplete;
+  }
 }
-
-export default YahooFinanceApiService;

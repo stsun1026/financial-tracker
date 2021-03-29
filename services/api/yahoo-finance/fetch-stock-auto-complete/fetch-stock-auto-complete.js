@@ -1,5 +1,5 @@
 import { store } from '../../../../redux/store';
-import YahooFinanceApiService from '../yahoo-finance-api-service';
+import { YahooFinanceApiService } from '../yahoo-finance-api-service';
 import urlBuilder from '../../url-builder';
 import {
   BASE_URL,

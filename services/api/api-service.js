@@ -1,8 +1,15 @@
 import axios from 'axios';
-import YahooFinanceApiService from './yahoo-finance/yahoo-finance-api-service';
+import { YahooFinanceApiService } from './yahoo-finance/yahoo-finance-api-service';
 
 export const ApiService = function() {
-  this.yahooFinance = () => new YahooFinanceApiService(axios);
+  this._yahooFinanceApiService = null;
+
+  this.yahooFinance = () => {
+    if(!this._yahooFinanceApiService) {
+      this._yahooFinanceApiService = new YahooFinanceApiService(axios);
+    }
+    return this._yahooFinanceApiService;
+  }
 
   this.get = ({
     url,
