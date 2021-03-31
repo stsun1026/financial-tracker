@@ -5,14 +5,7 @@ import { FetchStockAutoComplete } from './fetch-stock-auto-complete/fetch-stock-
 export const YahooFinanceApiService = function(axios) {
   ApiService.call(this);
 
-  this._fetchStockAutoComplete = null;
-
   this.defaultRegion = () => US_REGION;
 
-  this.fetchStockAutoComplete = ({ query }) => {
-    if(!this._fetchStockAutoComplete) {
-      this._fetchStockAutoComplete = new FetchStockAutoComplete(axios, query);
-    }
-    return this._fetchStockAutoComplete;
-  }
+  this.fetchStockAutoComplete = ({ query }) => new FetchStockAutoComplete(axios, query);
 }
