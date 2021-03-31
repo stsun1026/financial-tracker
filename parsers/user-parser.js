@@ -18,7 +18,7 @@ export const parseGoogleUserData = (userData) => {
   try {
     const providerData = userData[PROVIDER_DATA_KEY][PROVIDER_DATA_INDEX];
     const name = providerData[DISPLAY_NAME_KEY];
-    const userId = providerData[USER_ID_KEY];
+    const userId = userData[USER_ID_KEY];
     return ReduxUser({ name: name, id: userId });
   } catch(error) {
     return userInErrorState(error);
