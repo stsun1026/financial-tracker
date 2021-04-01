@@ -7,5 +7,5 @@ export const YahooFinanceApiService = function(axios) {
 
   this.defaultRegion = () => US_REGION;
 
-  this.fetchStockAutoComplete = ({ query }) => new FetchStockAutoComplete(axios, query);
+  this.fetchStockAutoComplete = (query) => new FetchStockAutoComplete(axios, query);
 }
