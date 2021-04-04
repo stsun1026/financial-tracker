@@ -1,4 +1,4 @@
-import ReduxUser from '../redux/redux-models/redux-user';
+import ReduxUser from '../models/front-end-models/redux-user';
 
 // keys for user payload from firebase
 const PROVIDER_DATA_KEY = 'providerData';

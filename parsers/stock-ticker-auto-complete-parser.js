@@ -1,5 +1,5 @@
 import ParsedStockTickerAutoComplete
-  from '../redux/redux-models/parsed-redux-stock-ticker-auto-complete';
+  from '../models/front-end-models/parsed-redux-stock-ticker-auto-complete';
 
 // keys
 const DATA = 'data';
