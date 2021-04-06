@@ -1,6 +1,6 @@
-import LoginVerifier from '../components/login-verifier/login-verifier';
-import Logout from '../components/login/logout';
-import Greeting from '../components/greeting/greeting';
+import LoginVerifier from '../../components/login-verifier/login-verifier';
+import Logout from '../../components/login/logout';
+import Greeting from '../../components/greeting/greeting';
 
 const Dashboard = () => {
   return (
