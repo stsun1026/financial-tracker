@@ -6,7 +6,7 @@ const Greeting = () => {
   const firstName = name.split(' ')[0];
   return (
     <div>
-      Hello {firstName}
+      Hi {firstName}
     </div>
   );
 }
