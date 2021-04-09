@@ -1,6 +1,6 @@
 import { useEffect, useLayoutEffect } from 'react'
 import { useSelector } from 'react-redux';
-import RedirectService from '../../../services/routing/redirect-service';
+import redirectService from '../../../services/routing/redirect-service';
 import CheckingLoginStatus from '../checking-login-status';
 import databaseService from '../../../services/database/database-service';
 
@@ -16,7 +16,7 @@ const LoggedOutEnforcer = ({children, ...props}) => {
 
   useEffect(() => {
     if(isFetchingLoginStatus === false && isLoggedIn === true) {
-      RedirectService.goToAuthorizedLandingPage();
+      redirectService.goToAuthorizedLandingPage();
     }
   }, [isFetchingLoginStatus]);
 

@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import RedirectService from '../../services/routing/redirect-service';
+import redirectService from '../../services/routing/redirect-service';
 import databaseService from '../../services/database/database-service';
 
 const GoogleLogin = ({children, ...props}) => {
@@ -8,13 +8,13 @@ const GoogleLogin = ({children, ...props}) => {
 
   useEffect(() => {
     if(isLoggedIn) {
-      RedirectService.goToAuthorizedLandingPage();
+      redirectService.goToAuthorizedLandingPage();
     }
   }, [isLoggedIn]);
 
   const login = () => {
     databaseService.auth()
-        .withSuccessAction(RedirectService.goToAuthorizedLandingPage)
+        .withSuccessAction(redirectService.goToAuthorizedLandingPage)
         .loginWithGooglePopup();
   }
 
