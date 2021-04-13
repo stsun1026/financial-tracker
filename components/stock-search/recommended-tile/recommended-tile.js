@@ -1,4 +1,3 @@
-import React from 'react';
 import styles from './recommended-tile.module.css';
 
 const RecommendedTile = ({
@@ -17,7 +16,7 @@ const RecommendedTile = ({
         <h2 className = {styles.exchangeName}>{exchange}</h2>
       </div>
     </div>
-  )
+  );
 };
 
 export default RecommendedTile;
