@@ -1,0 +1,30 @@
+.mainContainer {
+  border-width: 0 0.5px;
+  border-top: groove #c3c5c6;
+  border-bottom: groove #c3c5c6;;
+  cursor: pointer;
+  flex: 1;
+}
+.innerContainer {
+  margin: 10px 10px 10px 10px;
+  display: grid;
+  grid-auto-flow: column;
+}
+.exchangeName {
+  font-size: 0.7em;
+  color: #6a6d70;
+  margin: 0px;
+  justify-self: end;
+  align-self: flex-end;
+}
+.stockName {
+  font-size: 0.7em;
+  color: black;
+  margin: 0px;
+}
+.tickerSymbol {
+  font-size: 1.5em;
+  color: #5a7da0;
+  margin-top: 0px;
+  margin-bottom: 10px;
+}
