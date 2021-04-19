@@ -1,12 +1,11 @@
 .mainContainer {
-  border-width: 0 0.5px;
-  border-top: groove #c3c5c6;
-  border-bottom: groove #c3c5c6;;
   cursor: pointer;
   flex: 1;
 }
 .innerContainer {
-  margin: 10px 10px 10px 10px;
+  padding: 10px 0px 15px 0px;
+  margin: 0px 10px 0px 10px;
+  border-bottom: 1px groove #f9f9f9;
   display: grid;
   grid-auto-flow: column;
 }
