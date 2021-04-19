@@ -2,7 +2,6 @@ import RecommendedTile from '../recommended-tile/recommended-tile';
 import styles from './recommended-list.module.css';
 
 const RecommendedList = ({
-  searchTerm,
   searchResults
 }) => {
   // const searchResults = [{name: 'Shopify Inc', exchange: 'TSX', tickerSymbol: 'SHOP'},{name: 'Shopify Inc', exchange: 'TSX', tickerSymbol: 'SHOP'}]
